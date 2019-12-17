@@ -11,60 +11,33 @@ namespace Vidly.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Random()
+        public ActionResult Movies()
         {
             var Movie = new List<Movie>
             {
-                new Movie {Id = 1 , Name = "Shreak !"},
-                new Movie { Id = 2, Name = "Wall-E"}
-            };
-            var Customer = new List<Customer>
-            {
-                new Customer {Name = "Customer 1"},
-                new Customer {Name = "Customer 2"}
-
+                new Movie {Id = 1 , Name = "Shreak !",Genere = "Animated", year = "2011"},
+                new Movie { Id = 2, Name = "Wall-E", Genere = "Animated", year = "2017"},
+                new Movie {Id =3, Name = "Spider_man", Genere = "Super-Hero", year= "2019"}
             };
 
-            var viewmodel = new RandomMovieViewModel
+            var viewmodelMovies = new RandomMovieViewModel
             {
-                movie = Movie,
-                customer = Customer
+                movie = Movie
 
             };
-        
-
-
-            return View(viewmodel);
+            return View(viewmodelMovies);
         }
 
-        public ActionResult Edit(int Id)
-        {
-            return Content("Id = " + Id);
-        }
-
-        public ActionResult Index(int ? pageIndex, string SortBy)
-        {
-            if (!pageIndex.HasValue)
-            {
-                pageIndex = 1;
-            }
-            if (string.IsNullOrWhiteSpace(SortBy))
-            {
-                SortBy = "release Day";
-
-            }
-
-            return Content(string.Format("pageIndex = {0} & SortBy = {1}", pageIndex,SortBy));
-        }   
-
-        [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2})}")]
-        public ActionResult released(int year, int month)
-        {        
-                  return Content(year +"/"+ month);
-        }
-
-
-
-
+           
     }
-}
+
+
+
+}   
+
+    
+
+
+
+
+    
